@@ -21,7 +21,15 @@ body {
 
 .stats-container {
     display: flex;
+    align-items: center; /* Centers items vertically */
+    justify-content: space-between; /* Adds space between items if you want */
+    cursor: pointer; /* Changes the cursor to pointer when hovering */
 }
+
+.stats-container:hover {
+    box-shadow: 0 0 30px lightblue; /* Adds box-shadow on hover */
+}
+
 
 .stats-card {
     background-color: #a8b0bc;

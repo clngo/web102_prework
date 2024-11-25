@@ -9,7 +9,7 @@ import GAMES_DATA from './games.js';
 
 // create a list of objects to store the data about the games using JSON.parse
 const GAMES_JSON = JSON.parse(GAMES_DATA)
-
+console.log(GAMES_JSON); // Should display an array of game objects
 // remove all child elements from a parent element in the DOM
 function deleteChildElements(parent) {
     while (parent.firstChild) {
@@ -27,27 +27,34 @@ const gamesContainer = document.getElementById("games-container");
 
 // create a function that adds all data from the games array to the page
 function addGamesToPage(games) {
-
-    // loop over each item in the data
-
-
-        // create a new div element, which will become the game card
-
-
-        // add the class game-card to the list
-
-
-        // set the inner HTML using a template literal to display some info 
-        // about each game
-        // TIP: if your images are not displaying, make sure there is space
-        // between the end of the src attribute and the end of the tag ("/>")
-
-
-        // append the game to the games-container
+    // Loop over each item in the games array
+for (let game of games) {
+    // Create a new div element for the game card
+    const gameCard = document.createElement("div");
+    
+    // Add the class game-card to the div
+    gameCard.classList.add("game-card");
+    
+    // Set the inner HTML using a template literal
+    gameCard.innerHTML = `
+        <img src="${game.img}" alt="${game.name}" class="game-img" />
+        <h2>${game.name}</h2>
+        <p>${game.description}</p>
+        <p>Amount pledged: $${game.pledged.toLocaleString()}</p>
+        <p>Goal: $${game.goal.toLocaleString()}</p>
+        <p>Backers: ${game.backers.toLocaleString()}</p>
+    `;
+    
+    // Append the game card to the games container
+    const gamesContainer = document.getElementById("games-container"); // Ensure you have this element in your HTML
+    gamesContainer.appendChild(gameCard);
+}
 
 }
 
 // call the function we just defined using the correct variable
+addGamesToPage(GAMES_JSON);
+
 // later, we'll call this function using a different list of games
 
 
